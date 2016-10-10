@@ -12,6 +12,7 @@ Currently available for Ruby.
 
 ### User Stories
 
+```
 As a user,
 So that I can check if my class has a spec file,
 I would like the name to be highlighted in red, until a spec has file been created
@@ -23,3 +24,4 @@ I would like it to be highlighted red until a test has been written.
 As a user,
 So that I can customise the amount of linting,
 I would like to choose how it appears in atom.
+```
