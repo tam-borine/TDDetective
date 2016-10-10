@@ -1,0 +1,17 @@
+{
+  "name": "tddetective-ruby",
+  "version": "0.0.0",
+  "description": "A simple linter that checks your code in progress and reminds you to TDD",
+  "engines": {
+    "atom": "*"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tam-borine/TDDetective.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tam-borine/TDDetective/issues"
+  },
+  "license": "MIT"
+}
