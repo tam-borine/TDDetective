@@ -2,13 +2,14 @@ class Grep
 
 
   def spec_file_exists?(classname)
-    get_project_root_dir
-    
+    files = Dir.glob("#{get_spec_root_dir}/**/*")
+    files = files.each {|file| puts file.inspect; file.split("/")}
+    !files.grep(/#{classname}/).empty?
   end
 
   private
 
-  def get_project_root_dir
+  def get_spec_root_dir
     File.join(File.dirname(__FILE__), '../spec') #may have to adapt
   end
 
@@ -17,6 +18,7 @@ end
 #
 # - grab the name of the class
 # - navigate to project root/spec
+
 # - run recursive grep to find file name matching class name
 #
 #
