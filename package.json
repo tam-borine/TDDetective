@@ -3,8 +3,7 @@
   "main": "./lib/tddetective",
   "version": "0.0.0",
   "description": "A short description of your package",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {
     "atom-workspace": "tddetective:toggle"
   },
@@ -14,5 +13,6 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
+    "fs": "0.0.1-security"
   }
 }
