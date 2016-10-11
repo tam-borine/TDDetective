@@ -72,7 +72,7 @@ describe('Tddetective', () => {
         // spyOn(tddetectiveElement, 'hasSpecFileName').andReturn(true);
         // expect(tddetectiveElement).toBeVisible();
         // alert(JSON.stringify(tddetectiveElement))
-        alert(Tddetective.toggle("tddetective"))
+        // alert(Tddetective.toggle("tddetective"))
         expect(Tddetective.hasSpecFileName("tddetective")).toEqual(true)
 
       });
