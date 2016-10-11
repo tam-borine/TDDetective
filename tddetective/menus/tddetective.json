@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle tddetective",
+        "command": "tddetective:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "tddetective",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "tddetective:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
