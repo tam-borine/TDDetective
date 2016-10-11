@@ -16,7 +16,7 @@ describe('Tddetective', () => {
   });
 
   describe('when the tddetective:toggle event is triggered', () => {
-    it('hides and shows the modal panel', () => {
+    xit('hides and shows the modal panel', () => {
       // Before the activation event the view is not on the DOM, and no panel
       // has been created
       expect(workspaceElement.querySelector('.tddetective')).not.toExist();
@@ -42,31 +42,39 @@ describe('Tddetective', () => {
       });
     });
 
-    it('hides and shows the view', () => {
+    xit('checks whether selection is a filename in spec dir', function(){
+
+      let tddetectiveElement = workspaceElement.querySelector('.tddetective');
+    })
+
+    it('checks whether selection is a filename in spec dir', () => {
       // This test shows you an integration test testing at the view level.
 
       // Attaching the workspaceElement to the DOM is required to allow the
       // `toBeVisible()` matchers to work. Anything testing visibility or focus
       // requires that the workspaceElement is on the DOM. Tests that attach the
       // workspaceElement to the DOM are generally slower than those off DOM.
-      jasmine.attachToDOM(workspaceElement);
+      // jasmine.attachToDOM(workspaceElement);
 
-      expect(workspaceElement.querySelector('.tddetective')).not.toExist();
+      // expect(workspaceElement.querySelector('.tddetective')).not.toExist();
 
       // This is an activation event, triggering it causes the package to be
       // activated.
       atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
-
       waitsForPromise(() => {
         return activationPromise;
       });
 
       runs(() => {
         // Now we can test for view visibility
-        let tddetectiveElement = workspaceElement.querySelector('.tddetective');
-        expect(tddetectiveElement).toBeVisible();
-        atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
-        expect(tddetectiveElement).not.toBeVisible();
+        // let tddetectiveElement = workspaceElement.querySelector('.tddetective');
+
+        // spyOn(tddetectiveElement, 'hasSpecFileName').andReturn(true);
+        // expect(tddetectiveElement).toBeVisible();
+        // alert(JSON.stringify(tddetectiveElement))
+        alert(Tddetective.toggle("tddetective"))
+        expect(Tddetective.hasSpecFileName("tddetective")).toEqual(true)
+
       });
     });
   });
