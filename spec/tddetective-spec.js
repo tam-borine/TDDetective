@@ -54,25 +54,20 @@ describe('Tddetective', () => {
       // `toBeVisible()` matchers to work. Anything testing visibility or focus
       // requires that the workspaceElement is on the DOM. Tests that attach the
       // workspaceElement to the DOM are generally slower than those off DOM.
-      // jasmine.attachToDOM(workspaceElement);
-
-      // expect(workspaceElement.querySelector('.tddetective')).not.toExist();
 
       // This is an activation event, triggering it causes the package to be
       // activated.
       atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
+
       waitsForPromise(() => {
         return activationPromise;
       });
 
       runs(() => {
-        // Now we can test for view visibility
         // let tddetectiveElement = workspaceElement.querySelector('.tddetective');
+        var dir = atom.config.configDirPath + "/packages/TDDetective/spec" ;
+        spyOn(Tddetective, 'getSpecPath').andReturn(dir);
 
-        // spyOn(tddetectiveElement, 'hasSpecFileName').andReturn(true);
-        // expect(tddetectiveElement).toBeVisible();
-        // alert(JSON.stringify(tddetectiveElement))
-        // alert(Tddetective.toggle("tddetective"))
         expect(Tddetective.hasSpecFileName("tddetective")).toEqual(true)
 
       });
