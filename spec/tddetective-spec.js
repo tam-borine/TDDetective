@@ -15,6 +15,67 @@ describe('Tddetective', () => {
     activationPromise = atom.packages.activatePackage('tddetective');
   });
 
+  describe("listening function", () => {
+    it("the listening function is called in activate function", () => {
+      spyOn(Tddetective, 'listenToClassNames');
+      atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
+
+      waitsForPromise(() => {
+        return activationPromise;
+      });
+
+      runs(() => {
+        expect(Tddetective.listenToClassNames).toHaveBeenCalled();
+      })
+    })
+
+    xit("it calls toggle and pass class name, when class name is found", () => {
+
+    })
+
+    xit("scan is called on buffer", () => {
+      spyOn(Tddetective, "runScanFunction")
+
+      atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
+
+      waitsForPromise(() => {
+        return activationPromise;
+      });
+
+      runs(() => {
+        expect(Tddetective.runScanFunction()).toHaveBeenCalled();
+      })
+
+
+    })
+
+    xit("find the class names in the active text editor", () => {
+      var testString = "class Bike"
+
+      var dir = atom.config.configDirPath + "/packages/TDDetective/spec/tddetective-spec.rb"
+      var editor = atom.workspace.buildTextEditor();
+      editor.buffer.cachedDiskContents = testString
+      editor.buffer.cachedText = testString
+      console.log(dir)
+      editor.buffer.file = new File([], false)
+      editor.buffer.file.cachedContents = "class Bike"
+      console.log(editor)
+
+      var buffer = editor.getBuffer()
+      var classNames = []
+
+
+      console.log(buffer)
+      console.log(classNames)
+      var result = Tddetective.findClassNames(editor);
+      console.log(result)
+      expect(result.includes("Bike")).toEqual(true)
+
+
+    })
+  })
+
+
   describe('when the tddetective:toggle event is triggered', () => {
     xit('hides and shows the modal panel', () => {
       // Before the activation event the view is not on the DOM, and no panel
@@ -42,7 +103,7 @@ describe('Tddetective', () => {
       });
     });
 
-    xit('checks whether selection is a filename in spec dir', function(){
+    it('checks whether selection is a filename in spec dir', function(){
 
       let tddetectiveElement = workspaceElement.querySelector('.tddetective');
     })
