@@ -17,7 +17,7 @@ describe('Tddetective', () => {
 
   describe("listening function", () => {
     it("the listening function is called in activate function", () => {
-      spyOn(Tddetective, 'listenToClassNames');
+      spyOn(Tddetective, 'listenToChanges');
       atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
 
       waitsForPromise(() => {
@@ -25,7 +25,20 @@ describe('Tddetective', () => {
       });
 
       runs(() => {
-        expect(Tddetective.listenToClassNames).toHaveBeenCalled();
+        expect(Tddetective.listenToChanges).toHaveBeenCalled();
+      })
+    })
+
+    it("listens on changes and calls findClassNamesAndCallToggle", () => {
+      spyOn(Tddetective, 'findClassNamesAndCallToggle').andCallThrough();
+      atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
+
+      waitsForPromise(() => {
+        return activationPromise;
+      });
+
+      runs(() => {
+        expect(Tddetective.findClassNamesAndCallToggle).toHaveBeenCalled();
       })
     })
 
