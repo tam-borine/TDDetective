@@ -4,5 +4,21 @@
 // for a full listing of what's available.
 @import "ui-variables";
 
-.tddetective {
+atom-text-editor::shadow {
+
+  @base: #C70C0C;
+
+  .tddetective {
+   color: saturate(@base, 60%);
+  }
+
+  .highlights {
+    color: saturate(@base, 20%);
+    text-decoration: underline overline;
+    background-color: saturate(@base, 5%);
+  }
+
+  .style {
+    color: blue;
+  }
 }
