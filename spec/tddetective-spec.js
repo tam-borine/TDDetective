@@ -15,12 +15,22 @@ describe('Tddetective', () => {
     helper = new HelperModule();
     workspaceElement = atom.views.getView(atom.workspace);
     activationPromise = atom.packages.activatePackage('tddetective');
+    console.log(editor)
+    console.log("above is the first editor")
+    changePromise = editor.emitter.emit('did-change', true);
     var editor = helper.createMockEditor();
 
+//not actually returning prmoise obj need to construct one?
     spyOn(Tddetective, "listenToChanges").andCallFake(function(editor){
       console.log(editor) //why is this undefined????????? how to inject editor here?
-      spyOn(editor, "onDidChange").and.CallThrough();
-      spyOn(Tddetective, "_pickUpChanges").and.CallThrough();
+            // waitsForPromise(() => {
+            //   return changePromise;
+            // });
+
+            // runs(() => {
+              spyOn(editor, "onDidChange");
+              spyOn(Tddetective, "_pickUpChanges");
+            // })
     })
   });
 
@@ -61,7 +71,7 @@ describe('Tddetective', () => {
     xit("scan is called on buffer", () => {
       spyOn(Tddetective, "runScanFunction")
 
-      atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
+      // atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
 
       waitsForPromise(() => {
         return activationPromise;
@@ -105,8 +115,6 @@ describe('Tddetective', () => {
         // let tddetectiveElement = workspaceElement.querySelector('.tddetective');
         var dir = atom.config.configDirPath + "/packages/TDDetective/spec" ;
         spyOn(Tddetective, '_getSpecPath').andReturn(dir);
-        console.log(dir)
-
         expect(Tddetective._hasSpecFileName("tddetective")).toEqual(true)
 
       });
