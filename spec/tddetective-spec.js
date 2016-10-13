@@ -80,9 +80,8 @@ describe('Tddetective', () => {
 
       console.log(buffer)
       console.log(classNames)
-      var result = Tddetective.findClassNames(editor);
-      console.log(result)
-      expect(result.includes("Bike")).toEqual(true)
+      var selection = Tddetective.findClassNames(editor);
+      expect(selection.includes("Bike")).toEqual(true)
 
 
     })
@@ -116,12 +115,12 @@ describe('Tddetective', () => {
       });
     });
 
-    it('checks whether selection is a filename in spec dir', function(){
+    it('checks whether aClassName is a filename in spec dir', function(){
 
       let tddetectiveElement = workspaceElement.querySelector('.tddetective');
     })
 
-    it('checks whether selection is a filename in spec dir', () => {
+    it('checks whether aClassName is a filename in spec dir', () => {
       // This test shows you an integration test testing at the view level.
 
       // Attaching the workspaceElement to the DOM is required to allow the
