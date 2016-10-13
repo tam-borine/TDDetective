@@ -12,11 +12,15 @@ describe('Tddetective', () => {
   let workspaceElement, activationPromise;
 
   beforeEach(() => {
+    helper = new HelperModule();
     workspaceElement = atom.views.getView(atom.workspace);
     activationPromise = atom.packages.activatePackage('tddetective');
+    var editor = helper.createMockEditor();
 
-    spyOn(Tddetective, "listenToChanges").andCallFake(function(){
-
+    spyOn(Tddetective, "listenToChanges").andCallFake(function(editor){
+      console.log(editor) //why is this undefined????????? how to inject editor here?
+      spyOn(editor, "onDidChange").and.CallThrough();
+      spyOn(Tddetective, "_pickUpChanges").and.CallThrough();
     })
   });
 
@@ -34,7 +38,10 @@ describe('Tddetective', () => {
     })
 
     it("listens on changes and calls pickUpChanges", () => {
-      spyOn(Tddetective, '_pickUpChanges').andCallThrough();
+      // spyOn(Tddetective, "listenToChanges").and.callFake(function(){
+      //
+      // })
+
       atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
 
       waitsForPromise(() => {
@@ -42,6 +49,7 @@ describe('Tddetective', () => {
       });
 
       runs(() => {
+        expect(Tddetective.listenToChanges).toHaveBeenCalled();
         expect(Tddetective._pickUpChanges).toHaveBeenCalled();
       })
     })

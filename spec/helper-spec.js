@@ -4,7 +4,7 @@ export default class HelperModule {
 
   createMockEditor(){
     var dir = atom.config.configDirPath + "/packages/TDDetective/spec/tddetective-spec.rb"
-    var editor = atom.workspace.buildTextEditor();
+    return editor = atom.workspace.buildTextEditor();
   }
 
   addDataToMockEditor(testString){
@@ -15,6 +15,8 @@ export default class HelperModule {
     editor.buffer.file.cachedContents = "class Bike"
     // console.log(editor)
   }
+
+
 
 
   // console.log(buffer)
