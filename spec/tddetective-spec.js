@@ -15,13 +15,11 @@ describe('Tddetective', () => {
     helper = new HelperModule();
     workspaceElement = atom.views.getView(atom.workspace);
     activationPromise = atom.packages.activatePackage('tddetective');
-    console.log(editor)
-    console.log("above is the first editor")
-    changePromise = editor.emitter.emit('did-change', true);
     var editor = helper.createMockEditor();
 
 //not actually returning prmoise obj need to construct one?
     spyOn(Tddetective, "listenToChanges").andCallFake(function(editor){
+      // changePromise = editor.emitter.emit('did-change', true);
       console.log(editor) //why is this undefined????????? how to inject editor here?
             // waitsForPromise(() => {
             //   return changePromise;
