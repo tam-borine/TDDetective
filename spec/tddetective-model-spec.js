@@ -47,16 +47,7 @@ describe('Tddetective Model', () => {
 
 
 
-
-
-
-
-
-
     it("listens on changes and calls pickUpChanges", () => {
-      // spyOn(Tddetective, "listenToChanges").and.callFake(function(){
-      //
-      // })
 
       atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
 
@@ -78,10 +69,7 @@ describe('Tddetective Model', () => {
 
       helperModule.createMockEditor()
       helperModule.addDataToMockEditor()
-      //
-      // var buffer = editor.getBuffer()
-      // var classNames = []
-      //
+
       var selection = Tddetective.findClassNames(editor);
       expect(selection.includes("Bike")).toEqual(true)
     });
