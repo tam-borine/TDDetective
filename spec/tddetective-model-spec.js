@@ -27,7 +27,7 @@ describe('Tddetective Model', () => {
     expect(tddetectiveModel._getSpecPath).toHaveBeenCalled();
   })
 
-  xit("_hasMethodNameInSpecFile is called by manageMethodChanges", () => {
+  it("_hasMethodNameInSpecFile is called by manageMethodChanges", () => {
     console.log(Tddetective)
     console.log(tddetectiveView)
     console.log(tddetectiveView.updateView)
@@ -43,9 +43,33 @@ describe('Tddetective Model', () => {
     tddetectiveModel.findClassAndMethodLine(editor);
 
     expect(tddetectiveModel._runScanFunction).toHaveBeenCalled();
-  })
+  });
 
+  describe('findMethodObjName', () => {
+    it('find the method object name without argument', () => {
+      var buffer = editor.getBuffer();
+      var aMethodName;
+      buffer.scan("", function(obj) {aMethodName = obj})
+      aMethodName.lineText = 'def testing';
+      expect(tddetectiveModel.findMethodObjName(aMethodName)).toEqual('testing');
+    });
 
+    it('find the method object name with an argument declared inside brackets', () => {
+      var buffer = editor.getBuffer();
+      var aMethodName;
+      buffer.scan("", function(obj) {aMethodName = obj})
+      aMethodName.lineText = 'def testing(args)';
+      expect(tddetectiveModel.findMethodObjName(aMethodName)).toEqual('testing');
+    });
+
+    it('find the method object name with an argument declared ouside brackets', () => {
+      var buffer = editor.getBuffer();
+      var aMethodName;
+      buffer.scan("", function(obj) {aMethodName = obj})
+      aMethodName.lineText = 'def testing args';
+      expect(tddetectiveModel.findMethodObjName(aMethodName)).toEqual('testing');
+    });
+  });
 
     it("listens on changes and calls pickUpChanges", () => {
 
