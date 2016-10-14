@@ -28,13 +28,8 @@ describe('Tddetective Model', () => {
   })
 
   it("_hasMethodNameInSpecFile is called by manageMethodChanges", () => {
-    console.log(Tddetective)
-    console.log(tddetectiveView)
-    console.log(tddetectiveView.updateView)
-    spyOn(tddetectiveModel, "_hasMethodNameInSpecFile")
-    spyOn(Tddetective, "tddetectiveView").andReturn(tddetectiveView)
-    spyOn(tddetectiveView, "updateView")
-    tddetectiveModel.manageMethodChanges("dock", new Range, editor, Tddetective)
+    spyOn(tddetectiveModel, "_hasMethodNameInSpecFile").andReturn(true)
+    tddetectiveModel.manageMethodChanges("dock", new Range, editor);
     expect(tddetectiveModel._hasMethodNameInSpecFile).toHaveBeenCalled();
   })
 
