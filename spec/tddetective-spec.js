@@ -29,10 +29,10 @@ describe('Tddetective', () => {
 
     it("onDoneChange is called by listenToChanges", () =>{
       spyOn(Tddetective, "makeEditor").andReturn(editor)
-      spyOn(Tddetective.tddetectiveModel, "_onDoneChange")
+      spyOn(Tddetective.tddetectiveModel, "onDoneChange")
       Tddetective.toggle();
-      editor.emitter.emit('did-change');  
-      expect(Tddetective.tddetectiveModel._onDoneChange).toHaveBeenCalled();
+      editor.emitter.emit('did-change');
+      expect(Tddetective.tddetectiveModel.onDoneChange).toHaveBeenCalled();
     })
 
 });
