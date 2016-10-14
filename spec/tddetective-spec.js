@@ -14,9 +14,6 @@ describe('Tddetective', () => {
   let workspaceElement, activationPromise;
 
   beforeEach(() => {
-  //   helper = new HelperModule();
-  //   workspaceElement = atom.views.getView(atom.workspace);
-  //   activationPromise = atom.packages.activatePackage('tddetective');
     var editor = helper.createMockEditor();
     editor = helper.addDataToMockEditor("I am test string for mock editor");
   });
