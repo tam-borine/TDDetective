@@ -27,7 +27,7 @@ describe('Tddetective Model', () => {
 
       runs(() => {
         expect(Tddetective.listenToChanges).toHaveBeenCalled();
-        expect(Tddetective._pickUpChanges).toHaveBeenCalled();
+        expect(Tddetective.pickUpChanges).toHaveBeenCalled();
       });
     });
 
@@ -72,7 +72,7 @@ describe('Tddetective Model', () => {
         // let tddetectiveElement = workspaceElement.querySelector('.tddetective');
         var dir = atom.config.configDirPath + "/packages/TDDetective/spec" ;
         spyOn(Tddetective, '_getSpecPath').andReturn(dir);
-        expect(Tddetective._hasSpecFileName("tddetective")).toEqual(true)
+        expect(Tddetective.hasSpecFileName("tddetective")).toEqual(true)
 
       });
     });
