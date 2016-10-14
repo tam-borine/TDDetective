@@ -1,18 +1,39 @@
-# TDDetective
+# TDDetective :tophat:
 
 The atom package that sneakily watches you spiking functions and reminds you to keep it TDD!
+This package is currently available for Ruby.
 
-Currently available for Ruby.
+## Installation
+```
+apm install TDDetective
+```
 
-### Version 1 - Compatible with Ruby classes and files
+## Usage
 
-### Version 2 - Compatible with Ruby methods
+Once the package is installed, you will be able to activate it through the toggle option, which can be found by right clicking on the atom window.
 
-### Version 3 - Compatible with Javascript
+![Imgur](http://i.imgur.com/tNFrgYR.png)
 
-### Version 4 - Able to customise visibility of linter
+The package assumes that your tests will be located in a '/spec' directory and works through matching the class name and method name with the relevant \_spec file, to ensure you're TDDing!
 
-### User Stories
+## Customisation
+
+If you wish to customise any of the visual features, you can edit the tddetective.less file, which is located in the styles directory.
+
+![Imgur](http://i.imgur.com/gomhEah.png)
+
+
+## Contributing
+
+Please do contact us and let us know about your contributions!
+
+1. Fork it! :fork_and_knife:
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :smile:
+
+## User Stories
 
 ```
 As a user,
@@ -27,3 +48,20 @@ As a user,
 So that I can customise the amount of linting,
 I would like to choose how it appears in atom.
 ```
+
+## The TDDetective Team
+
+[Ewan Sheldon](https://github.com/ewansheldon)
+
+[James Hamann](https://github.com/jameshamann)
+
+[Matt Vickers](https://github.com/Matty79)
+
+[Peter Miklos](https://github.com/peter-miklos)
+
+[Tam Borine](https://github.com/tam-borine)
+
+
+## License
+
+Please view our [License](https://github.com/tam-borine/TDDetective/blob/master/LICENSE.md) for more information.
