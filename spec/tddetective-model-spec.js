@@ -31,7 +31,13 @@ describe('Tddetective Model', () => {
     spyOn(tddetectiveModel, "_hasMethodNameInSpecFile").andReturn(true)
     tddetectiveModel.manageMethodChanges("dock", new Range, editor);
     expect(tddetectiveModel._hasMethodNameInSpecFile).toHaveBeenCalled();
-  })
+  });
+
+  it("hasSpecFileName is called by manageClassChanges", () => {
+    spyOn(tddetectiveModel, "hasSpecFileName").andReturn(true)
+    tddetectiveModel.manageClassChanges("dock", new Range, editor);
+    expect(tddetectiveModel.hasSpecFileName).toHaveBeenCalled();
+  });
 
   it ("_runScanFunction is called by findClassAndMethodLine", () => {
     spyOn(tddetectiveModel, "_runScanFunction")
