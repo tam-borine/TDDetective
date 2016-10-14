@@ -1,6 +1,7 @@
 'use babel';
 
 import Tddetective from '../lib/tddetective';
+import TddetectiveView from '../lib/tddetective-view';
 import TddetectiveModel from '../lib/tddetective-model';
 import HelperModule from './helper-spec';
 
@@ -8,11 +9,49 @@ import HelperModule from './helper-spec';
 describe('Tddetective Model', () => {
   let workspaceElement, activationPromise;
 
+
   beforeEach(() => {
     helper = new HelperModule();
+    tddetectiveModel = new TddetectiveModel();
+    tddetectiveView = new TddetectiveView();
     workspaceElement = atom.views.getView(atom.workspace);
     activationPromise = atom.packages.activatePackage('tddetective');
+    var editor = helper.createMockEditor();
+    editor = helper.addDataToMockEditor("I am test string for mock editor");
   });
+
+  it("_getSpecPath is called by hasSpecFileName", () => {
+    spyOn(tddetectiveModel, "_getSpecPath")
+    tddetectiveModel.hasSpecFileName("Bike");
+
+    expect(tddetectiveModel._getSpecPath).toHaveBeenCalled();
+  })
+
+  xit("_hasMethodNameInSpecFile is called by manageMethodChanges", () => {
+    console.log(Tddetective)
+    console.log(tddetectiveView)
+    console.log(tddetectiveView.updateView)
+    spyOn(tddetectiveModel, "_hasMethodNameInSpecFile")
+    spyOn(Tddetective, "tddetectiveView").andReturn(tddetectiveView)
+    spyOn(tddetectiveView, "updateView")
+    tddetectiveModel.manageMethodChanges("dock", new Range, editor, Tddetective)
+    expect(tddetectiveModel._hasMethodNameInSpecFile).toHaveBeenCalled();
+  })
+
+  it ("_runScanFunction is called by findClassAndMethodLine", () => {
+    spyOn(tddetectiveModel, "_runScanFunction")
+    tddetectiveModel.findClassAndMethodLine(editor);
+
+    expect(tddetectiveModel._runScanFunction).toHaveBeenCalled();
+  })
+
+
+
+
+
+
+
+
 
     it("listens on changes and calls pickUpChanges", () => {
       // spyOn(Tddetective, "listenToChanges").and.callFake(function(){
@@ -30,6 +69,10 @@ describe('Tddetective Model', () => {
         expect(Tddetective.pickUpChanges).toHaveBeenCalled();
       });
     });
+
+
+
+
 
     xit("finds the class and method line in editor", () => {
 
@@ -59,7 +102,7 @@ describe('Tddetective Model', () => {
 
     })
 
-    it('checks whether aClassName is a filename in spec dir', () => {
+    xit('checks whether aClassName is a filename in spec dir', () => {
       // This is an activation event, triggering it causes the package to be
       // activated.
       atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
