@@ -13,7 +13,10 @@ import HelperModule from './helper-spec';
 describe('Tddetective', () => {
   let workspaceElement, activationPromise;
 
+
   beforeEach(() => {
+    workspaceElement = atom.views.getView(atom.workspace);
+    activationPromise = atom.packages.activatePackage('tddetective')
     var editor = helper.createMockEditor();
     editor = helper.addDataToMockEditor("I am test string for mock editor");
   });
@@ -24,12 +27,18 @@ describe('Tddetective', () => {
       expect(Tddetective.listenToChanges).toHaveBeenCalled();
     });
 
-    it("onDoneChange is called by listenToChanges", () =>{
+    it("onDoneChange is called by listenToChanges when a change is made", () =>{
       spyOn(Tddetective, "makeEditor").andReturn(editor)
-      spyOn(Tddetective.tddetectiveModel, "onDoneChange")
-      Tddetective.toggle();
-      editor.emitter.emit('did-change');
-      expect(Tddetective.tddetectiveModel.onDoneChange).toHaveBeenCalled();
-    })
+      atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
+      activationPromise.then(function(){
+        atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
+        spyOn(Tddetective.tddetectiveModel, "onDoneChange")
+        editor.emitter.emit('did-change');
+        expect(Tddetective.tddetectiveModel.onDoneChange).toHaveBeenCalled();
+        alert("hi")
+      })
+
+
+    });
 
 });

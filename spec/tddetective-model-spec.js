@@ -66,7 +66,7 @@ describe('Tddetective Model', () => {
     });
   });
 
-    it("listens on changes and calls pickUpChanges", () => {
+    xit("listens on changes and calls pickUpChanges", () => {
 
       atom.commands.dispatch(workspaceElement, 'tddetective:toggle');
 
