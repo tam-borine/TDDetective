@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/tam-borine/TDDetective.png?label=ready&title=Ready)](https://waffle.io/tam-borine/TDDetective)
 # TDDetective :tophat:
 
 The atom package that sneakily watches you spiking functions and reminds you to keep it TDD!
